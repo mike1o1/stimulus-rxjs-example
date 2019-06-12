@@ -1,0 +1,27 @@
+<div class="movies" data-controller="movies">
+  <div class="movie-cards">
+    <% @movies.each do |movie| %>
+      <div class="movie-card" data-target="movies.movieItem"
+           data-action="click->movies#loadMovie"
+           data-movie-url="<%= movie_path(movie[:slug]) %>">
+        <div class="movie-item-content">
+          <%= image_tag(movie[:thumb]) %>
+
+          <div class="movie-item-detail text-center">
+            <%= movie[:title] %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="movie-detail" data-target="movies.movieDetails">
+    Select a movie for more details...
+  </div>
+
+<div class="loading-indicator hidden"
+     data-target="movies.movieDetailsLoading">
+  <%= image_tag("loading.gif") %>
+</div>
+
+</div>
